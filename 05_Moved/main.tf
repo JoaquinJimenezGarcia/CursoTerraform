@@ -1,6 +1,10 @@
 provider "local" {}
 
-resource "local_file" "mi_fichero" {
-  filename = "MyFile"
-  content  = "Content of my file"
+moved {
+  from = local_file.mi_fichero
+  to = module.fichero_modularizado.local_file.mi_fichero
+}
+
+module "fichero_modularizado" {
+  source = "./local"
 }
